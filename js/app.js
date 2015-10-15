@@ -3,8 +3,7 @@ $(document).ready(function(){
   var secretNum,
   userFeedback,
   userInput,
-  counter,
-  guessTracker;
+  counter;
 
   //create dom elements
   var $newGame = $("a.new");
@@ -31,12 +30,11 @@ $(document).ready(function(){
     secretNum = randomNumber();
     // resets the counter back to 0
     counter = 0;
-    // resets the guess tracker to empty
-    guessTracker = "";
     // Adds insturctions back to Feedback section
     $feedback.html('Make your Guess!');
     // Sets the guess count back to 0
     $span.text('0');
+    $guessList.empty();
     console.log("this is the secret number: " + secretNum);
   }
 
@@ -53,8 +51,6 @@ $(document).ready(function(){
     validInput();  
     // sets the user feedback variable to whatever is returned by the generateUserFeedback function
     userFeedback = generateUserFeedback();
-    // add li elements to show what user has guesses so far
-    generateGuessList();
     // increments the count of the user guess
     guessCount();  
     // shows the user a message about their guess
@@ -110,21 +106,15 @@ $(document).ready(function(){
   // shows the user a message about their guess
   function renderUserInformation(){
     $feedback.html(userFeedback);
-    $guessList.append(guessTracker);
+    $guessList.append('<li>' + userInput + '</li>');
   }
 
   // increments the users guess count
   var guessCount = (function(){
     return function(){
-      counter++
+      counter++;
       $span.text(counter);      
     };
-  })();
-
-  var generateGuessList = (function(){
-    return function(){
-      guessTracker += '<li>' + userInput + '</li>'
-    }
   })();
 
 });
