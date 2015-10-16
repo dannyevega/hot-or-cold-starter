@@ -13,6 +13,9 @@ $(document).ready(function(){
   var $span = $('span#count');
   var $guessList = $('#guessList');
 
+  // creates a new game on page load
+  newGame();
+
   /*--- Display information modal box ---*/
   $(".what").click(function(){
     $(".overlay").fadeIn(1000);
@@ -23,6 +26,7 @@ $(document).ready(function(){
     $(".overlay").fadeOut(1000);
   });
 
+  // creates a new game when the 'New Game' button is clicked
 	$newGame.click(newGame);
 
   function newGame(){
@@ -34,6 +38,7 @@ $(document).ready(function(){
     $feedback.html('Make your Guess!');
     // Sets the guess count back to 0
     $span.text('0');
+    // empties the guessList area 
     $guessList.empty();
     console.log("this is the secret number: " + secretNum);
   }
